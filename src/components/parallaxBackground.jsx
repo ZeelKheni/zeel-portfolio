@@ -15,7 +15,7 @@ const ParallaxBackground = () => {
         <div
           className="absolute inset-0 w-full h-screen -z-50"
           style={{
-            backgroundImage: "url(/assets/Hero/bg.jpg)",
+            backgroundImage: "url(/zeel-portfolio/assets/Hero/bg.jpg)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
           }}
@@ -24,7 +24,7 @@ const ParallaxBackground = () => {
         {/* <motion.div
           className="absolute inset-0 -z-40"
           style={{
-            backgroundImage: "url(/assets/Hero/Horror Train_1.png)",
+            backgroundImage: "url(/zeel-portfolio/assets/Hero/Horror Train_1.png)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
             y: mountain3Y,
@@ -34,7 +34,7 @@ const ParallaxBackground = () => {
         {/* <motion.div
           className="absolute inset-0 -z-30"
           style={{
-            backgroundImage: "url(/assets/planets.png)",
+            backgroundImage: "url(/zeel-portfolio/assets/planets.png)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
             x: planetsX,
@@ -44,7 +44,7 @@ const ParallaxBackground = () => {
         <motion.div
           className="absolute inset-0 -z-20"
           style={{
-            backgroundImage: "url(/assets/Hero/HorrorTrain_1.png)",
+            backgroundImage: "url(/zeel-portfolio/assets/Hero/HorrorTrain_1.png)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
             y: mountain2Y,
@@ -54,7 +54,7 @@ const ParallaxBackground = () => {
         <motion.div
           className="absolute inset-0 -z-20"
           style={{
-            backgroundImage: "url(/assets/Hero/HorrorAVATAR.png)",
+            backgroundImage: "url(/zeel-portfolio/assets/Hero/HorrorAVATAR.png)",
             backgroundPosition: "bottom",
             backgroundSize: "cover",
             y: mountain3Y,

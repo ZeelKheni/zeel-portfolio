@@ -24,27 +24,27 @@ export const myProjects = [
       {
         id: 1,
         name: "NodeJs",
-        path: "/assets/logos/nodejs-1-logo-svgrepo-com.svg",
+        path: "/zeel-portfolio/assets/logos/nodejs-1-logo-svgrepo-com.svg",
       },
       {
         id: 2,
         name: "Visual Studio",
-        path: "/assets/logos/vs.svg",
+        path: "/zeel-portfolio/assets/logos/vs.svg",
       },
       {
         id: 3,
         name: "GitHub",
-        path: "/assets/logos/github-octocat-svgrepo-com.svg",
+        path: "/zeel-portfolio/assets/logos/github-octocat-svgrepo-com.svg",
       },
        {
         id: 4,
         name: "Unity 6",
-        path: "/assets/logos/unity6.svg",
+        path: "/zeel-portfolio/assets/logos/unity6.svg",
       },
       {
         id: 5,
         name: "C#",
-        path: "/assets/logos/csharp.svg",
+        path: "/zeel-portfolio/assets/logos/csharp.svg",
       },
     ],
   },
@@ -70,17 +70,17 @@ export const myProjects = [
       {
         id: 1,
         name: "Unity 6",
-        path: "/assets/logos/unity6.svg",
+        path: "/zeel-portfolio/assets/logos/unity6.svg",
       },
       {
         id: 2,
         name: "C#",
-        path: "/assets/logos/csharp.svg",
+        path: "/zeel-portfolio/assets/logos/csharp.svg",
       },
       {
         id: 3,
         name: "Git",
-        path: "/assets/logos/github-octocat-svgrepo-com.svg",
+        path: "/zeel-portfolio/assets/logos/github-octocat-svgrepo-com.svg",
       },
       
     ],
@@ -109,17 +109,17 @@ export const myProjects = [
       {
         id: 1,
         name: "C#",
-        path: "/assets/logos/csharp.svg",
+        path: "/zeel-portfolio/assets/logos/csharp.svg",
       },
       {
         id: 2,
         name: ".Net",
-        path: "/assets/logos/dotnet.svg",
+        path: "/zeel-portfolio/assets/logos/dotnet.svg",
       },
       {
         id: 3,
         name: "NodeJs",
-        path: "/assets/logos/nodejs-1-logo-svgrepo-com.svg",
+        path: "/zeel-portfolio/assets/logos/nodejs-1-logo-svgrepo-com.svg",
       },
      
     ],
@@ -148,17 +148,17 @@ export const myProjects = [
       {
         id: 1,
         name: "NodeJs",
-        path: "/assets/logos/nodejs-1-logo-svgrepo-com.svg",
+        path: "/zeel-portfolio/assets/logos/nodejs-1-logo-svgrepo-com.svg",
       },
       {
         id: 2,
         name: "Visual Studio",
-        path: "/assets/logos/vs.svg",
+        path: "/zeel-portfolio/assets/logos/vs.svg",
       },
       {
         id: 3,
         name: "GitHub",
-        path: "/assets/logos/github-octocat-svgrepo-com.svg",
+        path: "/zeel-portfolio/assets/logos/github-octocat-svgrepo-com.svg",
       },
     ],
   },
@@ -184,22 +184,22 @@ export const myProjects = [
   //     {
   //       id: 1,
   //       name: "Blazor",
-  //       path: "/assets/logos/blazor.svg",
+  //       path: "/zeel-portfolio/assets/logos/blazor.svg",
   //     },
   //     {
   //       id: 2,
   //       name: ".NET Core",
-  //       path: "/assets/logos/dotnetcore.svg",
+  //       path: "/zeel-portfolio/assets/logos/dotnetcore.svg",
   //     },
   //     {
   //       id: 3,
   //       name: "SQLite",
-  //       path: "/assets/logos/sqlite.svg",
+  //       path: "/zeel-portfolio/assets/logos/sqlite.svg",
   //     },
   //     {
   //       id: 4,
   //       name: "TailwindCSS",
-  //       path: "/assets/logos/tailwindcss.svg",
+  //       path: "/zeel-portfolio/assets/logos/tailwindcss.svg",
   //     },
   //   ],
   // },
@@ -212,17 +212,17 @@ export const mySocials = [
   {
     name: "WhatsApp",
     href: "https://wa.me/+917433037910",
-    icon: "/assets/socials/whatsApp.svg",
+    icon: "/zeel-portfolio/assets/socials/whatsApp.svg",
   },
   {
     name: "Linkedin",
     href: "https://www.linkedin.com/in/zeel-kheni/",
-    icon: "/assets/socials/linkedIn.svg",
+    icon: "/zeel-portfolio/assets/socials/linkedIn.svg",
   },
   {
     name: "Instagram",
     href: "https://www.instagram.com/the_kheni_zeel/",
-    icon: "/assets/socials/instagram.svg",
+    icon: "/zeel-portfolio/assets/socials/instagram.svg",
   },
 ];
 
