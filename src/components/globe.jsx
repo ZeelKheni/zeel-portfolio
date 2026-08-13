@@ -9,15 +9,15 @@ import { twMerge } from "tailwind-merge";
 const MOVEMENT_DAMPING = 1400;
 
 const GLOBE_CONFIG = {
-  width: 800,
-  height: 800,
+  width: 600,
+  height: 600,
   onRender: () => {},
-  devicePixelRatio: 2,
+  devicePixelRatio: typeof window !== "undefined" ? Math.min(window.devicePixelRatio, 1.5) : 1,
   phi: 0,
   theta: 0.3,
   dark: 1,
   diffuse: 0.4,
-  mapSamples: 16000,
+  mapSamples: 8000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1],
   markerColor: [1, 1, 1],
@@ -40,8 +40,10 @@ export function Globe({ className, config = GLOBE_CONFIG }) {
   let phi = 0;
   let width = 0;
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
   const pointerInteracting = useRef(null);
   const pointerInteractionMovement = useRef(0);
+  const isVisible = useRef(true);
 
   const r = useMotionValue(0);
   const rs = useSpring(r, {
@@ -72,27 +74,43 @@ export function Globe({ className, config = GLOBE_CONFIG }) {
       }
     };
 
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", onResize, { passive: true });
     onResize();
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible.current = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+
+    if (canvasRef.current) {
+      observer.observe(canvasRef.current);
+    }
 
     const globe = createGlobe(canvasRef.current, {
       ...config,
-      width: width * 2,
-      height: width * 2,
+      width: width,
+      height: width,
       onRender: (state) => {
+        if (!isVisible.current) return;
         if (!pointerInteracting.current) phi += 0.005;
         state.phi = phi + rs.get();
-        state.width = width * 2;
-        state.height = width * 2;
+        state.width = width;
+        state.height = width;
       },
     });
 
-    setTimeout(() => (canvasRef.current.style.opacity = "1"), 0);
+    if (canvasRef.current) {
+      canvasRef.current.style.opacity = "1";
+    }
+
     return () => {
       globe.destroy();
+      observer.disconnect();
       window.removeEventListener("resize", onResize);
     };
-  }, [rs, config]);
+  }, []);
 
   return (
     <div

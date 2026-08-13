@@ -16,8 +16,10 @@ const Projects = () => {
   const springY = useSpring(y, { damping: 14, stiffness: 70 });
 
   const handleMouseMove = (e) => {
-    x.set(e.clientX + 20);
-    y.set(e.clientY + 20);
+    if (preview) {
+      x.set(e.clientX + 20);
+      y.set(e.clientY + 20);
+    }
   };
 
   // Filter games based on category and search query

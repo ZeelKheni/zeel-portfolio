@@ -20,15 +20,25 @@ export function M3Carousel({ projects, setPreview }) {
     setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
-  // Auto-scroll track to center the new active card whenever activeIndex changes
+  const isInitialMount = useRef(true);
+
+  // Auto-scroll track to center the new active card horizontally without moving main window scroll
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     if (carouselRef.current) {
       const activeCard = carouselRef.current.children[activeIndex];
       if (activeCard) {
-        activeCard.scrollIntoView({
+        const container = carouselRef.current;
+        const cardOffsetLeft = activeCard.offsetLeft;
+        const cardWidth = activeCard.offsetWidth;
+        const containerWidth = container.offsetWidth;
+        const targetScrollLeft = cardOffsetLeft - containerWidth / 2 + cardWidth / 2;
+        container.scrollTo({
+          left: targetScrollLeft,
           behavior: "smooth",
-          block: "nearest",
-          inline: "center",
         });
       }
     }

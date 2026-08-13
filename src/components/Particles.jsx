@@ -1,26 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import React, { useEffect, useRef, useState } from "react";
-
-function MousePosition() {
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
-  });
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  return mousePosition;
-}
+import React, { useEffect, useRef } from "react";
 
 function hexToRgb(hex) {
   hex = hex.replace("#", "");
@@ -41,7 +20,7 @@ function hexToRgb(hex) {
 
 export const Particles = ({
   className = "",
-  quantity = 100,
+  quantity = 80,
   staticity = 50,
   ease = 50,
   size = 0.4,
@@ -55,19 +34,31 @@ export const Particles = ({
   const canvasContainerRef = useRef(null);
   const context = useRef(null);
   const circles = useRef([]);
-  const mousePosition = MousePosition();
   const mouse = useRef({ x: 0, y: 0 });
   const canvasSize = useRef({ w: 0, h: 0 });
-  const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  const dpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio, 1.5) : 1;
   const rafID = useRef(null);
   const resizeTimeout = useRef(null);
+  const isVisible = useRef(false);
 
   useEffect(() => {
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
     }
     initCanvas();
-    animate();
+
+    const handleMouseMove = (event) => {
+      if (!canvasRef.current || !isVisible.current) return;
+      const rect = canvasRef.current.getBoundingClientRect();
+      const { w, h } = canvasSize.current;
+      const x = event.clientX - rect.left - w / 2;
+      const y = event.clientY - rect.top - h / 2;
+      const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
+      if (inside) {
+        mouse.current.x = x;
+        mouse.current.y = y;
+      }
+    };
 
     const handleResize = () => {
       if (resizeTimeout.current) {
@@ -78,22 +69,45 @@ export const Particles = ({
       }, 200);
     };
 
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("resize", handleResize);
+
+    // IntersectionObserver to pause requestAnimationFrame when off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+        isVisible.current = visible;
+        if (visible) {
+          if (!rafID.current) {
+            animate();
+          }
+        } else {
+          if (rafID.current) {
+            window.cancelAnimationFrame(rafID.current);
+            rafID.current = null;
+          }
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    if (canvasContainerRef.current) {
+      observer.observe(canvasContainerRef.current);
+    }
 
     return () => {
       if (rafID.current != null) {
         window.cancelAnimationFrame(rafID.current);
+        rafID.current = null;
       }
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }
+      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
+      observer.disconnect();
     };
   }, [color]);
-
-  useEffect(() => {
-    onMouseMove();
-  }, [mousePosition.x, mousePosition.y]);
 
   useEffect(() => {
     initCanvas();
@@ -102,20 +116,6 @@ export const Particles = ({
   const initCanvas = () => {
     resizeCanvas();
     drawParticles();
-  };
-
-  const onMouseMove = () => {
-    if (canvasRef.current) {
-      const rect = canvasRef.current.getBoundingClientRect();
-      const { w, h } = canvasSize.current;
-      const x = mousePosition.x - rect.left - w / 2;
-      const y = mousePosition.y - rect.top - h / 2;
-      const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
-      if (inside) {
-        mouse.current.x = x;
-        mouse.current.y = y;
-      }
-    }
   };
 
   const resizeCanvas = () => {
