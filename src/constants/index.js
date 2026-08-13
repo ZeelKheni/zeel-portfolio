@@ -66,9 +66,9 @@ export const myProjects = [
     ],
     href: "",
     logo: "",
-    image: "https://pub-62b37c6b4e274edf9d0707b11b89ca50.r2.dev/projects/anderbhar.jpg",
+    image: "https://pub-62b37c6b4e274edf9d0707b11b89ca50.r2.dev/projects/Do_Patti.png",
     URL: "https://pub-62b37c6b4e274edf9d0707b11b89ca50.r2.dev/projects/DoPatti/Build",
-    appName: "Build",
+    appName: "DoPatti",
     width: "100%",
     height: "100%",
     controls: [
